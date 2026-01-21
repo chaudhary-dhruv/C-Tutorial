@@ -106,23 +106,37 @@ void scanArray()
 
 void displayArray()
 {
-    int i, j;
+    int i, j ;
     
-    printf("\nThe first matrix is as follows:\n");
-    for(i = 0; i < r1; i++) {
-        for(j = 0; j < c1; j++) {
-            printf("%d ", a[i][j]);
-        }
-        printf("\n");
-    }
     
-    printf("\nThe 2nd matrix is as follows:\n");
-    for(i = 0; i < r2; i++) {
-        for(j = 0; j < c2; j++) {
-            printf("%d ", b[i][j]);
+    printf("\nThe matrixes are as follows:\n");
+
+    int maxRow = (r1 > r2) ? r1 : r2;
+    for(i = 0; i < maxRow; i++) {
+        // Print row from first matrix
+        if(i < r1) {
+            for(j = 0; j < c1; j++) {
+                printf("%d ", a[i][j]);
+            }
+        } else {
+            for(j = 0; j < c1; j++) {
+                printf("  ");          // Print spaces if row doesn't exist
+            }
         }
-        printf("\n");
+
+        printf("\t\t"); // Separate between matrices
+
+        // Print row from second matrix
+        if(i < r2) {
+            for(j = 0; j < c2; j++) {
+                printf("%d ", b[i][j]);
+            }
+        }
+
+        printf("\n"); // New line after each row
     }
+
+    
 }
 
 void add()
