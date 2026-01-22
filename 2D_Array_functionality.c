@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<conio.h>
+#include<stdlib.h>
 #define ROW 36
 #define COL 36
 
@@ -11,6 +12,7 @@ void displayArray();
 void mult();
 void add();
 void sub();
+void devision();
 void sort();
 void menu();
 
@@ -40,7 +42,7 @@ void main()
                 mult();
                 break;
             case 4:
-                printf("\nDivide option selected");
+                devision();
                 break;
             case 5:
                 sort();
@@ -50,9 +52,8 @@ void main()
                 printf("\nSearch array option selected");
                 break;
             case 7:
-                printf("\nExiting...");
-                getch();
-                return;
+                printf("\nExit...");
+                exit(0);
             default:
                 printf("\nInvalid choice!");
         }
@@ -264,3 +265,44 @@ void sort()
         printf("\n");
     }
 } //end of sort
+
+void devision()
+{
+    int i, j, k;
+
+    float detemint = (b[0][0] * b[1][1]) - (b[0][1] * b[1][0]);  // calculating determinant
+    
+    // Find the Inverse matrix of b = inverseB
+    float inverseB[2][2];
+
+    inverseB[0][0] = (float)b[1][1] / detemint;
+    inverseB[0][1] = (float)-b[0][1] / detemint;  
+    inverseB[1][0] = (float)-b[1][0] / detemint;
+    inverseB[1][1] = (float)b[0][0] / detemint;
+
+    
+    // to devide the matrix a by b we have to multiply a by the inverse of b(it is arr here)
+    // Reset result matrix to 0
+
+    float result[2][2] = {0};
+        
+        
+        for(i = 0; i < 2; i++) {
+            for(j = 0; j < 2; j++) {
+                for(k = 0; k < 2; k++) {
+                    result[i][j] = result[i][j] + ((float)a[i][k] * inverseB[k][j]);
+                }
+            }
+        }
+        
+        printf("\nThe resultant matrix after multiplication is:\n");
+        for(i = 0; i < 2; i++) {
+            for(j = 0; j < 2; j++) {
+                printf("%.2f ", result[i][j]);
+            }
+            printf("\n");
+        }
+
+
+    
+} // End of devision
